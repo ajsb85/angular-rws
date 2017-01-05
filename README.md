@@ -11,7 +11,7 @@ var ws = new WebSocket('ws://....');
 you can replace with:
 
 ```javascript
-var ws = new ReconnectingWebSocket('ws://....');
+var ws = new $webSocket('ws://....');
 ```
 
 Minified library with gzip compression is less than 600 bytes.
@@ -20,7 +20,7 @@ Minified library with gzip compression is less than 600 bytes.
 
 You can install this package locally with `bower`.
 
-> Please note that Angular WebSoket requires **Angular 1.3.x** or higher.
+> Please note that Angular WebSocket requires **Angular 1.3.x** or higher.
 
 ```shell
 # To get the latest stable version, use bower from the command line.
@@ -44,13 +44,9 @@ Now that you have installed the Angular libraries, simply include the scripts an
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css">
 </head>
     <body ng-app="YourApp">
-
     <div ng-controller="YourController">
-
     </div>
 
     <script src="/bower_components/angular/angular.js"></script>
