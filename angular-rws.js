@@ -4,7 +4,7 @@
   angular.module("ngWebSocket", [])
     .factory('$webSocket', ['$window', '$document', '$timeout', '$log', function ($window, $document, $timeout, $log) {
 
-      function ReconnectingWebSocket(url, protocols, options) {
+      function WebSocket(url, protocols, options) {
 
         // Default settings
         var settings = {
@@ -114,14 +114,14 @@
             this.reconnect_attempts = 0;
           }
 
-          if (self.debug || ReconnectingWebSocket.debug_all) {
-            $log.debug('ReconnectingWebSocket', 'attempt-connect', self.url);
+          if (self.debug || WebSocket.debug_all) {
+            $log.debug('WebSocket', 'attempt-connect', self.url);
           }
 
           var localWs = ws;
           timeout = $timeout(function () {
-            if (self.debug || ReconnectingWebSocket.debug_all) {
-              $log.debug('ReconnectingWebSocket', 'connection-timeout', self.url);
+            if (self.debug || WebSocket.debug_all) {
+              $log.debug('WebSocket', 'connection-timeout', self.url);
             }
             timed_out = true;
             localWs.close();
@@ -130,8 +130,8 @@
 
           ws.onopen = function (event) {
             $timeout.cancel(timeout);
-            if (self.debug || ReconnectingWebSocket.debug_all) {
-              $log.debug('ReconnectingWebSocket', 'onopen', self.url);
+            if (self.debug || WebSocket.debug_all) {
+              $log.debug('WebSocket', 'onopen', self.url);
             }
             self.protocol = ws.protocol;
             self.readyState = $window.WebSocket.OPEN;
@@ -156,8 +156,8 @@
               e.wasClean = event.wasClean;
               eventTarget.dispatchEvent(e);
               if (!reconnect_attempt && !timed_out) {
-                if (self.debug || ReconnectingWebSocket.debug_all) {
-                  $log.debug('ReconnectingWebSocket', 'onclose', self.url);
+                if (self.debug || WebSocket.debug_all) {
+                  $log.debug('WebSocket', 'onclose', self.url);
                 }
                 eventTarget.dispatchEvent(generateEvent('close'));
               }
@@ -170,16 +170,16 @@
             }
           };
           ws.onmessage = function (event) {
-            if (self.debug || ReconnectingWebSocket.debug_all) {
-              $log.debug('ReconnectingWebSocket', 'onmessage', self.url, event.data);
+            if (self.debug || WebSocket.debug_all) {
+              $log.debug('WebSocket', 'onmessage', self.url, event.data);
             }
             var e = generateEvent('message');
             e.data = event.data;
             eventTarget.dispatchEvent(e);
           };
           ws.onerror = function (event) {
-            if (self.debug || ReconnectingWebSocket.debug_all) {
-              $log.debug('ReconnectingWebSocket', 'onerror', self.url, event);
+            if (self.debug || WebSocket.debug_all) {
+              $log.debug('WebSocket', 'onerror', self.url, event);
             }
             eventTarget.dispatchEvent(generateEvent('error'));
           };
@@ -197,8 +197,8 @@
          */
         this.send = function (data) {
           if (ws) {
-            if (self.debug || ReconnectingWebSocket.debug_all) {
-              $log.debug('ReconnectingWebSocket', 'send', self.url, data);
+            if (self.debug || WebSocket.debug_all) {
+              $log.debug('WebSocket', 'send', self.url, data);
             }
             return ws.send(data);
           } else {
@@ -236,28 +236,28 @@
        * An event listener to be called when the $window.WebSocket connection's readyState changes to OPEN;
        * this indicates that the connection is ready to send and receive data.
        */
-      ReconnectingWebSocket.prototype.onopen = function (event) { };
+      WebSocket.prototype.onopen = function (event) { };
       /** An event listener to be called when the $window.WebSocket connection's readyState changes to CLOSED. */
-      ReconnectingWebSocket.prototype.onclose = function (event) { };
+      WebSocket.prototype.onclose = function (event) { };
       /** An event listener to be called when a connection begins being attempted. */
-      ReconnectingWebSocket.prototype.onconnecting = function (event) { };
+      WebSocket.prototype.onconnecting = function (event) { };
       /** An event listener to be called when a message is received from the server. */
-      ReconnectingWebSocket.prototype.onmessage = function (event) { };
+      WebSocket.prototype.onmessage = function (event) { };
       /** An event listener to be called when an error occurs. */
-      ReconnectingWebSocket.prototype.onerror = function (event) { };
+      WebSocket.prototype.onerror = function (event) { };
 
       /**
-       * Whether all instances of ReconnectingWebSocket should log debug messages.
-       * Setting this to true is the equivalent of setting all instances of ReconnectingWebSocket.debug to true.
+       * Whether all instances of WebSocket should log debug messages.
+       * Setting this to true is the equivalent of setting all instances of WebSocket.debug to true.
        */
-      ReconnectingWebSocket.debug_all = false;
+      WebSocket.debug_all = false;
 
-      ReconnectingWebSocket.CONNECTING = $window.WebSocket.CONNECTING;
-      ReconnectingWebSocket.OPEN = $window.WebSocket.OPEN;
-      ReconnectingWebSocket.CLOSING = $window.WebSocket.CLOSING;
-      ReconnectingWebSocket.CLOSED = $window.WebSocket.CLOSED;
+      WebSocket.CONNECTING = $window.WebSocket.CONNECTING;
+      WebSocket.OPEN = $window.WebSocket.OPEN;
+      WebSocket.CLOSING = $window.WebSocket.CLOSING;
+      WebSocket.CLOSED = $window.WebSocket.CLOSED;
 
-      return ReconnectingWebSocket;
+      return WebSocket;
 
     }]);
 })(angular);
