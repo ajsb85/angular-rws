@@ -1,0 +1,21 @@
+{
+  "name": "ngWebSocket",
+  "homepage": "https://github.com/ajsb85/bower-angular-websocket",
+  "authors": [
+    "Alexander Salas Bastidas <asalas@teclib.com>"
+  ],
+  "description": "A small decorator for the JavaScript WebSocket API that automatically reconnects",
+  "main": "angular-websocket.js",
+  "keywords": [
+    "websocket",
+    "angular"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
