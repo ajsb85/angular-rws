@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module("ngWebSocket", [])
-    .factory('reconnectingWebSocket', ['$window', '$document', '$timeout', '$log', function ($window, $document, $timeout, $log) {
+    .factory('$webSocket', ['$window', '$document', '$timeout', '$log', function ($window, $document, $timeout, $log) {
 
       function ReconnectingWebSocket(url, protocols, options) {
 
