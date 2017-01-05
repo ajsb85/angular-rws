@@ -1,0 +1,2 @@
+# bower-angular-websocket
+ngWebSocket
