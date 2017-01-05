@@ -38,7 +38,7 @@ bower update
 
 ## Using the library
 
-Now that you have installed the Angular libraries, simply include the scripts and stylesheet in your main HTML file, in the order shown in the example below. Note that npm  will install the files under `/bower_components/angular-material/`.
+Now that you have installed the Angular libraries, simply include the scripts and stylesheet in your main HTML file, in the order shown in the example below. Note that npm  will install the files under `/bower_components/angular-rws/`.
 
 ```html
 <!DOCTYPE html>
@@ -50,7 +50,7 @@ Now that you have installed the Angular libraries, simply include the scripts an
     </div>
 
     <script src="/bower_components/angular/angular.js"></script>
-    <script src="/bower_components/angular-material/angular-rws.js"></script>
+    <script src="/bower_components/angular-rws/angular-rws.js"></script>
     <script>
 
         // Include app dependency on ngWebSocket
