@@ -16,6 +16,58 @@ var ws = new ReconnectingWebSocket('ws://....');
 
 Minified library with gzip compression is less than 600 bytes.
 
+## Installing
+
+You can install this package locally with `bower`.
+
+> Please note that Angular WebSoket requires **Angular 1.3.x** or higher.
+
+```shell
+# To get the latest stable version, use bower from the command line.
+bower install angular-rws
+
+# To get the most recent, last committed-to-master version use:
+bower install 'angular-rws#master'
+
+# To save the bower settings for future use:
+bower install angular-rws --save
+
+# Later, you can use easily update with:
+bower update
+```
+
+## Using the library
+
+Now that you have installed the Angular libraries, simply include the scripts and stylesheet in your main HTML file, in the order shown in the example below. Note that npm  will install the files under `/bower_components/angular-material/`.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css">
+</head>
+    <body ng-app="YourApp">
+
+    <div ng-controller="YourController">
+
+    </div>
+
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-material/angular-rws.js"></script>
+    <script>
+
+        // Include app dependency on ngWebSocket
+
+        angular.module( 'YourApp', [ 'ngWebSocket' ] )
+            .controller("YourController", YourController );
+
+    </script>
+
+</body>
+</html>
+```
+
 ## How reconnections occur
 
 With the standard `WebSocket` API, the events you receive from the WebSocket instance are typically:
