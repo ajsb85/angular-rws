@@ -1,11 +1,11 @@
 {
-  "name": "ngWebSocket",
-  "homepage": "https://github.com/ajsb85/bower-angular-websocket",
+  "name": "angular-rws",
+  "homepage": "https://github.com/ajsb85/angular-rws",
   "authors": [
     "Alexander Salas Bastidas <asalas@teclib.com>"
   ],
   "description": "A small decorator for the JavaScript WebSocket API that automatically reconnects",
-  "main": "angular-websocket.js",
+  "main": "angular-rws.js",
   "keywords": [
     "websocket",
     "angular"
