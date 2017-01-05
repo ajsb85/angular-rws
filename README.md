@@ -74,20 +74,20 @@ With the standard `WebSocket` API, the events you receive from the WebSocket ins
     onmessage
     onclose // At this point the WebSocket instance is dead.
 
-With a `ReconnectingWebSocket`, after an `onclose` event is called it will automatically attempt to reconnect. In addition, a connection is attempted repeatedly (with a small pause) until it succeeds. So the events you receive may look something more like:
+With a `$webSocket`, after an `onclose` event is called it will automatically attempt to reconnect. In addition, a connection is attempted repeatedly (with a small pause) until it succeeds. So the events you receive may look something more like:
 
     onopen
     onmessage
     onmessage
     onmessage
     onclose
-    // ReconnectingWebSocket attempts to reconnect
+    // Attempts to reconnect
     onopen
     onmessage
     onmessage
     onmessage
     onclose
-    // ReconnectingWebSocket attempts to reconnect
+    // Attempts to reconnect
     onopen
     onmessage
     onmessage
@@ -99,7 +99,7 @@ This is all handled automatically for you by the library.
 ### Parameters
 
 ```javascript
-var socket = new ReconnectingWebSocket(url, protocols, options);
+var socket = new $webSocket(url, protocols, options);
 ```
 
 #### `url`
@@ -121,15 +121,15 @@ var socket = new ReconnectingWebSocket(url, protocols, options);
 Options can either be passed as the 3rd parameter upon instantiation or set directly on the object after instantiation:
 
 ```javascript
-var socket = new ReconnectingWebSocket(url, null, {debug: true, reconnectInterval: 3000});
+var socket = new $webSocket(url, null, {debug: true, reconnectInterval: 3000});
 ```
 
 or
 
 ```javascript
-var socket = new ReconnectingWebSocket(url);
+var socket = new $webSocket(url);
 socket.debug = true;
-socket.timeoutInterval = 5400;
+socket.timeout_interval = 5400;
 ```
 
 #### `debug`
@@ -138,43 +138,43 @@ socket.timeoutInterval = 5400;
 - Accepts `true` or `false`
 - Default value: `false`
 
-#### `automaticOpen`
+#### `automatic_open`
 
 - Whether or not the websocket should attempt to connect immediately upon instantiation. The socket can be manually opened or closed at any time using ws.open() and ws.close().
 - Accepts `true` or `false`
 - Default value: `true`
 
-#### `reconnectInterval`
+#### `reconnect_interval`
 
 - The number of milliseconds to delay before attempting to reconnect.
 - Accepts `integer`
 - Default: `1000`
 
-#### `maxReconnectInterval`
+#### `max_reconnect_interval`
 
 - The maximum number of milliseconds to delay a reconnection attempt.
 - Accepts `integer`
 - Default: `30000`
 
-#### `reconnectDecay`
+#### `reconnect_decay`
 
 - The rate of increase of the reconnect delay. Allows reconnect attempts to back off when problems persist.
 - Accepts `integer` or `float`
 - Default: `1.5`
 
-#### `timeoutInterval`
+#### `timeout_interval`
 
 - The maximum time in milliseconds to wait for a connection to succeed before closing and retrying.
 - Accepts `integer`
 - Default: `2000`
 
-#### `maxReconnectAttempts`
+#### `max_reconnect_attempts`
 
 - The maximum number of reconnection attempts that will be made before giving up. If null, reconnection attempts will be continue to be made forever.
 - Accepts `integer` or `null`.
 - Default: `null`
 
-#### `binaryType`
+#### `binary_type`
 
 - The binary type is required by some applications.
 - Accepts strings `'blob'` or `'arraybuffer'`.
@@ -203,4 +203,4 @@ socket.timeoutInterval = 5400;
 - Transmits data to the server over the WebSocket connection.
 - Accepts @param data a text string, ArrayBuffer or Blob
 
-Like this? Check out [websocketd](https://github.com/ajsb85/bower-angular-websocket) for the simplest way to create WebSocket backends from any programming language.
+Like this? Check out [angular-rws](https://github.com/ajsb85/angular-rws) for the simplest way to create WebSocket backends from any programming language.
