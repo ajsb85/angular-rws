@@ -45,7 +45,7 @@
         this.url = url;
 
         /** The number of attempted reconnects since starting, or the last successful connection. Read only. */
-        this.reconnectAttempts = 0;
+        this.reconnect_attempts = 0;
 
         /**
          * The current state of the connection.
@@ -53,7 +53,7 @@
          * Read only.
          */
         this.readyState = $window.WebSocket.CONNECTING;
-
+        
         /**
          * A string indicating the name of the sub-protocol the server selected; this will be one of
          * the strings specified in the protocols parameter when creating the $window.WebSocket object.
@@ -68,7 +68,8 @@
         var timeout;
         var timed_out = false;
         var forced_close = false;
-        var eventTarget = document.createElement('div');
+        //var eventTarget = angular.element('<div></div>');
+        var eventTarget = document.createElement('div'); 
 
         // Wire up "on*" properties as event handlers
 
@@ -105,12 +106,12 @@
           ws = new $window.WebSocket(self.url, protocols || []);
 
           if (reconnect_attempt) {
-            if (this.max_reconnect_attempts && this.reconnectAttempts > this.max_reconnect_attempts) {
+            if (this.max_reconnect_attempts && this.reconnect_attempts > this.max_reconnect_attempts) {
               return;
             }
           } else {
             eventTarget.dispatchEvent(generateEvent('connecting'));
-            this.reconnectAttempts = 0;
+            this.reconnect_attempts = 0;
           }
 
           if (self.debug || ReconnectingWebSocket.debugAll) {
@@ -134,7 +135,7 @@
             }
             self.protocol = ws.protocol;
             self.readyState = $window.WebSocket.OPEN;
-            self.reconnectAttempts = 0;
+            self.reconnect_attempts = 0;
             var e = generateEvent('open');
             e.isReconnect = reconnect_attempt;
             reconnect_attempt = false;
@@ -161,9 +162,9 @@
                 eventTarget.dispatchEvent(generateEvent('close'));
               }
 
-              timeout = self.reconnect_interval * Math.pow(self.reconnect_decay, self.reconnectAttempts);
+              timeout = self.reconnect_interval * Math.pow(self.reconnect_decay, self.reconnect_attempts);
               $timeout(function () {
-                self.reconnectAttempts++;
+                self.reconnect_attempts++;
                 self.open(true);
               }, timeout > self.max_reconnect_interval ? self.max_reconnect_interval : timeout);
             }
@@ -259,4 +260,4 @@
       return ReconnectingWebSocket;
 
     }]);
-})();
+})(angular);
