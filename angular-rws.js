@@ -114,13 +114,13 @@
             this.reconnect_attempts = 0;
           }
 
-          if (self.debug || ReconnectingWebSocket.debugAll) {
+          if (self.debug || ReconnectingWebSocket.debug_all) {
             $log.debug('ReconnectingWebSocket', 'attempt-connect', self.url);
           }
 
           var localWs = ws;
           timeout = $timeout(function () {
-            if (self.debug || ReconnectingWebSocket.debugAll) {
+            if (self.debug || ReconnectingWebSocket.debug_all) {
               $log.debug('ReconnectingWebSocket', 'connection-timeout', self.url);
             }
             timed_out = true;
@@ -130,7 +130,7 @@
 
           ws.onopen = function (event) {
             $timeout.cancel(timeout);
-            if (self.debug || ReconnectingWebSocket.debugAll) {
+            if (self.debug || ReconnectingWebSocket.debug_all) {
               $log.debug('ReconnectingWebSocket', 'onopen', self.url);
             }
             self.protocol = ws.protocol;
@@ -156,7 +156,7 @@
               e.wasClean = event.wasClean;
               eventTarget.dispatchEvent(e);
               if (!reconnect_attempt && !timed_out) {
-                if (self.debug || ReconnectingWebSocket.debugAll) {
+                if (self.debug || ReconnectingWebSocket.debug_all) {
                   $log.debug('ReconnectingWebSocket', 'onclose', self.url);
                 }
                 eventTarget.dispatchEvent(generateEvent('close'));
@@ -170,7 +170,7 @@
             }
           };
           ws.onmessage = function (event) {
-            if (self.debug || ReconnectingWebSocket.debugAll) {
+            if (self.debug || ReconnectingWebSocket.debug_all) {
               $log.debug('ReconnectingWebSocket', 'onmessage', self.url, event.data);
             }
             var e = generateEvent('message');
@@ -178,7 +178,7 @@
             eventTarget.dispatchEvent(e);
           };
           ws.onerror = function (event) {
-            if (self.debug || ReconnectingWebSocket.debugAll) {
+            if (self.debug || ReconnectingWebSocket.debug_all) {
               $log.debug('ReconnectingWebSocket', 'onerror', self.url, event);
             }
             eventTarget.dispatchEvent(generateEvent('error'));
@@ -197,7 +197,7 @@
          */
         this.send = function (data) {
           if (ws) {
-            if (self.debug || ReconnectingWebSocket.debugAll) {
+            if (self.debug || ReconnectingWebSocket.debug_all) {
               $log.debug('ReconnectingWebSocket', 'send', self.url, data);
             }
             return ws.send(data);
@@ -250,7 +250,7 @@
        * Whether all instances of ReconnectingWebSocket should log debug messages.
        * Setting this to true is the equivalent of setting all instances of ReconnectingWebSocket.debug to true.
        */
-      ReconnectingWebSocket.debugAll = false;
+      ReconnectingWebSocket.debug_all = false;
 
       ReconnectingWebSocket.CONNECTING = $window.WebSocket.CONNECTING;
       ReconnectingWebSocket.OPEN = $window.WebSocket.OPEN;
