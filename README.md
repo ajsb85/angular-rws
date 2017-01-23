@@ -1,5 +1,7 @@
 # ngWebSocket
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ajsb85/angular-rws.svg)](https://greenkeeper.io/)
+
 A small JavaScript library that decorates the WebSocket API to provide a WebSocket connection that will automatically reconnect if the connection is dropped.
 
 It is API compatible, so when you have:
